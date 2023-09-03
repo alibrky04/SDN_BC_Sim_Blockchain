@@ -8,7 +8,7 @@ from consensus import Consensus
 
 if __name__ == "__main__":
     new_blockchain = Blockchain()
-    new_consensus = Consensus(5)
+    new_consensus = Consensus(3)
     
     num_blocks = 3 # Number of blocks to be added
     
