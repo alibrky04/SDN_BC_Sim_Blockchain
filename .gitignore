@@ -361,3 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Enviroment for python
+env
+
+# Project file for Visual Studio
+#Phase1.pyprojjj
