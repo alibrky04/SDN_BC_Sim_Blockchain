@@ -10,7 +10,7 @@ if __name__ == "__main__":
     new_blockchain = Blockchain()
     new_consensus = Consensus(3)
     
-    num_blocks = 3 # Number of blocks to be added
+    num_blocks = 10 # Number of blocks to be added
     
     for i in range(0, num_blocks):
         new_block = new_consensus.generateNewBlock(new_blockchain.getLastBlock(), i, True)
