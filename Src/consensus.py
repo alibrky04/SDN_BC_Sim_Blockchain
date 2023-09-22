@@ -26,12 +26,11 @@ class Consensus:
             if p_slots[data] == 0: # If the parking slot is free, It makes that parking slot full
                 p_slots[data] = 1
                 
-                # It finds the correct hash for the block
-                for nonce in range(self.MAX_NONCE):
-                    hash_result = hashlib.sha256(str(c_header).encode() + str(nonce).encode()).hexdigest()
-                    if hash_result[:self.difficulty] == self.target:
-                        return hash_result, data, p_slots, timestamp, nonce
-            return False, data, p_slots, timestamp, nonce
+            # It finds the correct hash for the block
+            for nonce in range(self.MAX_NONCE):
+                hash_result = hashlib.sha256(str(c_header).encode() + str(nonce).encode()).hexdigest()
+                if hash_result[:self.difficulty] == self.target:
+                    return hash_result, data, p_slots, timestamp, nonce
         else:
             if p_slots[data] == 1: # If the parking slot is full, It makes that parking slot free
                 p_slots[data] = 0
@@ -49,22 +48,7 @@ class Consensus:
         if enter:
             if new_hash:
                 return Block(prevBlock.index + 1, prevBlock.hash, data1, new_p_slots, nonce, timestamp, new_hash)
-            next_block = prevBlock
-            next_block.previous_hash = prevBlock.hash
-            next_block.hash = None
-            next_block.timestamp = str(datetime.datetime.now())
-            next_block.nonce = 0
-            return next_block
-        else:
-            if new_hash:
-                return Block(prevBlock.index + 1, prevBlock.hash, data1, new_p_slots, nonce, timestamp, new_hash)
-            next_block = prevBlock
-            next_block.previous_hash = prevBlock.hash
-            next_block.hash = None
-            next_block.timestamp = str(datetime.datetime.now())
-            next_block.nonce = 0
-            return next_block
-
+            return False
         
 def is_valid(self, bc):
         for i in range(1, len(bc)):
