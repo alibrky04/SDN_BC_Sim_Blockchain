@@ -49,6 +49,10 @@ class Consensus:
             if new_hash:
                 return Block(prevBlock.index + 1, prevBlock.hash, data1, new_p_slots, nonce, timestamp, new_hash)
             return False
+        else:
+            if new_hash:
+                return Block(prevBlock.index + 1, prevBlock.hash, data1, new_p_slots, nonce, timestamp, new_hash)
+            return False
         
 def is_valid(self, bc):
         for i in range(1, len(bc)):

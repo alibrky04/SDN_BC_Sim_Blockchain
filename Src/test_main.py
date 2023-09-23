@@ -110,10 +110,8 @@ def SimulateHost():
     if HostNumber is not None:
         NewHost = Host(HostNumber, SetSwitchNumber(HostNumber), SetRemoveTime(SetTimeSlot(), Uptime))
         HostList.append(NewHost)
-        print(NewHost, "Current Time: ", Uptime) 
-        print("Before generateNewBlock:", HostNumber)
+        print(NewHost, "Current Time: ", Uptime)
         new_block = new_consensus.generateNewBlock(new_blockchain.getLastBlock(), HostNumber, True)
-        print("After generateNewBlock:", HostNumber)
         if new_block:
             new_blockchain.addBlock(new_block)
         else:
@@ -126,8 +124,9 @@ def SimulateHost():
         if HostList[i].RemoveTime <= Uptime:
             RemoveHostNumber(HostList[i].HostNumber) 
             print(HostList[i].HostNumber, "Has Been Removed")
-            new_block = new_consensus.generateNewBlock(new_blockchain.getLastBlock(), HostNumber, False)
-            new_blockchain.addBlock(new_block)
+            new_block = new_consensus.generateNewBlock(new_blockchain.getLastBlock(), HostList[i].HostNumber, False)
+            if new_block:
+                new_blockchain.addBlock(new_block)
             HostList.remove(HostList[i]) 
             ListLength -= 1
 
